@@ -5,11 +5,14 @@ ALT_DIZINLER: İçinde yedeklenecek kod dosyalarının bulunduğu alt dizinlerin
 YEDEK_DIZIN: Kod dosyalarının içine yedekleneceği ana dizin
 UZANTILAR: Yedeklenecek dosyaların sahip olduğu uzantıların listesi
 
-Sistem kabaca şöyle çalışıyor: Önce ANA_DIZIN içindeki ALT_DIZIN elemanlarının içinde bulunan
-kod dosyaları bulunuyor. Bu dosyaların yedek klasöründeki adresleri belirleiyor ve her iki dosyanın 
-hash bilgileri karşılaştırılıyor. Aynı iseler, yedeklemeye gerek yok demektir.
-Eğer hash değerleri farklıysa ve yedek dosya mevcutsa, o anki zamana göre adı değiştiriliyor.
-Orijinal dosya, yedek klasörüne kopyalanıyor.
+Sistem kabaca şöyle çalışıyor: 
+
+Önce ANA_DIZIN içindeki ALT_DIZIN elemanlarının içinde bulunan kod dosyaları tanımlanıyor. 
+Bu dosyaların yedek klasöründeki adresleri belirleniyor ve her iki dosyanın hash bilgileri 
+karşılaştırılıyor. Aynı iseler, yedeklemeye gerek yok demektir.
+
+Eğer hash değerleri farklıysa ve yedek dosya mevcutsa, o anki zamana göre eski yedeğin adı değiştiriliyor.
+Orijinal yeni dosya, yedek klasörüne kopyalanıyor.
 
 Ben bu kodu günde bir kez çalıştırmayı planlıyorum. O yüzden kod saklama hassaslığını 1 gün yaptım.
 İsterseniz, damgatar fonksiyonu ile daha hassas bir isimlendirme yaptırabilirsiniz.
@@ -22,6 +25,8 @@ Kodlar henüz yeterince test edilmedi. Öneri ve bulgularınızı paylaşırsan�
 Bu repoyu aynı zamanda git komutlarını test etmek amacıyla kullandım.
 Aşağıdaki yöntem sorunsuz çalışıyor.
 Ancak ssh-key sistemini henüz devreye sokamadım.
+
+Ahmet Aksoy
 
 echo "# python_yedek" >> README.md
 git init
