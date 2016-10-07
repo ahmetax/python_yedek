@@ -52,7 +52,9 @@ def main():
             hash1 = get_hash(s)
             s2 = YEDEK_DIZIN+adizin+d
             print(s2)
-            hash2 = get_hash(s2)
+            h2=-1
+            if os.path.exists(s2):
+                hash2 = get_hash(s2)
             # Eğer her iki hash değeri aynıysa, son kopya ile orijinal de aynıdır
             if hash1 == hash2:
                 print("Orijinal dosyada değişiklik yok")
