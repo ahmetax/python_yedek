@@ -3,7 +3,7 @@
 Yazar: Ahmet Aksoy
 Sürüm: Python 3.5.2 ile derlenmiştir.
 Tarih: 07.10.2016
-Rev. : 07.10.2016
+Rev. : 13.10.2016
 Bu script, yedek_cfg.py dosyasında tanımlanan dizinlerdeki uzantısı verilen dosyaların
 kopyalarını yedek dizin/dosya şeklinde saklayacak. Eski dosya isimlerine
 yedeklenme tarih ve saatleri eklenecek.
@@ -17,7 +17,8 @@ import shutil
 
 BUFFER = 65536
 
-#def damgatar(): return datetime.datetime.now().strftime('%Y%m%d-%H:%M:%S.%f')
+def damgatar1(): return datetime.datetime.now().strftime('%Y%m%d-%H:%M:%S.%f')
+
 def damgatar():
     return datetime.datetime.now().strftime('%Y%m%d%H%M')
 
@@ -42,31 +43,34 @@ def txt_dosyabul(klasor):
 
 def main():
     dosyasay = 0
+    print("="*80)
+    print(damgatar1())
     for adizin in ALT_DIZINLER:
         klasor, dosyalar = txt_dosyabul(ANA_DIZIN+adizin)
         for d in dosyalar:
             dosyasay +=1
             s=klasor+d
             #print(dosyasay, s)
-            print(s)
+            #print(s,end=' ')
+            if not os.path.exists(s): continue
             hash1 = get_hash(s)
             s2 = YEDEK_DIZIN+adizin+d
-            print(s2)
+            #print(s2)
             h2=-1
             if os.path.exists(s2):
                 hash2 = get_hash(s2)
             # Eğer her iki hash değeri aynıysa, son kopya ile orijinal de aynıdır
             if hash1 == hash2:
-                print("Orijinal dosyada değişiklik yok")
+                print(s+" Orijinal dosyada değişiklik yok")
                 continue
             # yedek dosya yoksa hemen kaydet
             if os.path.exists(s2):
-                print("Eski dosyanın adını değiştir")
+                print("Yedekteki "+s+" dosyasının adı değişti")
                 s3 =YEDEK_DIZIN+adizin+damgatar()+d
                 shutil.move(s2,s3)
             # yedek varsa ama hashler tutmuyorsa
             # eski dosyanın adını değiştir, yenisini kaydet
-            print("Yeni dosyayı kopyala")
+            print(s+" kopyalandı (*****)")
             # dizin yoksa, oluştur
             if not os.path.exists(YEDEK_DIZIN+adizin):
                 os.mkdir(YEDEK_DIZIN+adizin)
